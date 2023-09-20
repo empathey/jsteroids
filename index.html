@@ -1,12 +1,27 @@
 <!DOCTYPE html>
+
 <html>
     <head>
 <meta charset="UTF-8">
 <title>Asteroids</title>
-<style></style>
+<style>
+a.button {
+    color: #2da1c1;
+    text-decoration: none;
+    
+    border: 2px solid black;
+    text-align:center;
+}
+a.button:hover
+{
+    color: #f90;
+    text-decoration: underline;         
+}
+
+</style>
     </head>
-    <body>
-<canvas id="gameCanvas" width="700" height="500"></canvas>
+    <body style="background-color:rgb(173, 173, 173);" >
+        <div style = "text-align:center;"><canvas id="gameCanvas" width="900" height="700"></canvas></div>
 <script>
     const FPS = 30;
     const shipsize = 30;
@@ -92,6 +107,52 @@ ctx.stroke();
         ctx.fillRect(ship.x - 1, ship.y - 1, 2, 2);
     }
     //to do
+
 </script>
+<script language=javascript>
+    var rev = "fwd";
+    function titlebar(val){
+        var msg  = "A S T E R O I D S";
+        var res = " ";
+        var speed = 130;
+        var pos = val;
+        msg = "      [|□=-"+msg+"-=□|]";
+        var le = msg.length;
+        
+        if(rev == "fwd"){
+            if(pos < le){
+                pos = pos+1;
+                scroll = msg.substr(0,pos);
+                document.title = scroll;
+                timer = window.setTimeout("titlebar("+pos+")",speed);
+            }
+            else {
+                rev = "bwd";
+                timer = window.setTimeout("titlebar("+pos+")",speed);
+                
+            }
+        }
+        else {
+            if(pos > 0) {
+                pos = pos-1;
+                var ale = le-pos;
+                scrol = msg.substr(ale,le);
+                document.title = scrol;
+                timer = window.setTimeout("titlebar("+pos+")",speed);
+            }
+            else {
+                rev = "fwd";
+                timer = window.setTimeout("titlebar("+pos+")",speed);
+                
+            }
+        }
+    }
+    titlebar(0);
+</script>
+<a href="https://empathey.github.io/reactportfoli0/" class="button"><center>Back to portfolio!</center></a>
+
     </body>
+
+
+
 </html>
